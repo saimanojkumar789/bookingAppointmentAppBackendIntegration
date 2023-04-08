@@ -22,11 +22,19 @@ function onSubmit(e){
     .catch(err => console.log(err));
 }
 
+window.addEventListener("DOMContentLoaded",() => {
+    axios.get('https://crudcrud.com/api/96de2e95b63c430dafb05da385d50d6f/appointmentData')
+    .then( (res) => {
+        for(let i=0;i<res.data.length;i++){
+            showOutput(res.data[i]);
+        }
+    })
+})
 
 function showOutput(data){
     let li = document.createElement('li');
     li.innerText = `${data.name} - ${data.email} ${data.contact}`;
-    li.className = "list-item-group mb-2"
+    li.className = "list-group-item mb-2";
     let button = document.createElement('button');
     button.className = "delete";
     button.style.float="right";
